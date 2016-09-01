@@ -14,7 +14,8 @@ import java.util.*;
 public class UniqueTagList implements Iterable<Tag> {
 
     /**
-     * Signals that an operation would have violated the 'no duplicates' property of the list.
+     * Signals that an operation would have violated the 'no duplicates'
+     * property of the list.
      */
     public static class DuplicateTagException extends DuplicateDataException {
         protected DuplicateTagException() {
@@ -23,17 +24,19 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Signals that an operation targeting a specified Tag in the list would fail because
-     * there is no such matching Tag in the list.
+     * Signals that an operation targeting a specified Tag in the list would
+     * fail because there is no such matching Tag in the list.
      */
-    public static class TagNotFoundException extends Exception {}
+    public static class TagNotFoundException extends Exception {
+    }
 
     private final List<Tag> internalList = new ArrayList<>();
 
     /**
      * Constructs an empty TagList.
      */
-    public UniqueTagList() {}
+    public UniqueTagList() {
+    }
 
     /**
      * Constructs a tag list with the given tags.
@@ -71,7 +74,8 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * All tags in this list as a Set. This set is mutable and change-insulated against the internal list.
+     * All tags in this list as a Set. This set is mutable and change-insulated
+     * against the internal list.
      */
     public Set<Tag> toSet() {
         return new HashSet<>(internalList);
@@ -87,7 +91,9 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Adds a Tag to the list.
      *
-     * @throws DuplicateTagException if the Tag to add is a duplicate of an existing Tag in the list.
+     * @throws DuplicateTagException
+     *             if the Tag to add is a duplicate of an existing Tag in the
+     *             list.
      */
     public void add(Tag toAdd) throws DuplicateTagException {
         if (contains(toAdd)) {
@@ -99,7 +105,9 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Adds all the given tags to this list.
      *
-     * @throws DuplicateTagException if the argument tag list contains tag(s) that already exist in this list.
+     * @throws DuplicateTagException
+     *             if the argument tag list contains tag(s) that already exist
+     *             in this list.
      */
     public void addAll(UniqueTagList tags) throws DuplicateTagException {
         if (!Collections.disjoint(this.internalList, tags.internalList)) {
@@ -109,7 +117,8 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Adds every tag from the argument list that does not yet exist in this list.
+     * Adds every tag from the argument list that does not yet exist in this
+     * list.
      */
     public void mergeFrom(UniqueTagList tags) {
         final Set<Tag> alreadyInside = this.toSet();
@@ -123,7 +132,8 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Removes the equivalent Tag from the list.
      *
-     * @throws TagNotFoundException if no such Tag could be found in the list.
+     * @throws TagNotFoundException
+     *             if no such Tag could be found in the list.
      */
     public void remove(Tag toRemove) throws TagNotFoundException {
         final boolean TagFoundAndDeleted = internalList.remove(toRemove);

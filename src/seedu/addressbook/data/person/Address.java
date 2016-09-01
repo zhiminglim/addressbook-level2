@@ -4,8 +4,8 @@ import java.util.regex.Pattern;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Person's address in the address book. Guarantees: immutable; is
+ * valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
 
@@ -14,8 +14,8 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = "[^,]+, [^,]+, [^,]+, [^,]+";
     public static final String ADDRESS_SPLIT_REGEX = ", ";
     public static final String ADDRESS_PRINT_REGEX = "%s, %s, %s, %s";
-    
-    //public final String value;
+
+    // public final String value;
     private boolean isPrivate;
     private final Block block;
     private final Street street;
@@ -25,14 +25,15 @@ public class Address {
     /**
      * Validates given address.
      *
-     * @throws IllegalValueException if given address string is invalid.
+     * @throws IllegalValueException
+     *             if given address string is invalid.
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
         if (!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        
+
         Pattern p = Pattern.compile(ADDRESS_SPLIT_REGEX);
         String[] items = p.split(address);
         block = new Block(items[0]);
@@ -57,7 +58,8 @@ public class Address {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.toString().equals(((Address) other).toString())); // state check
+                        && this.toString().equals(((Address) other).toString())); // state
+                                                                                  // check
     }
 
     @Override

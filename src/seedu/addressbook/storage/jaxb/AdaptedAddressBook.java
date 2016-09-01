@@ -27,12 +27,15 @@ public class AdaptedAddressBook {
     /**
      * No-arg constructor for JAXB use.
      */
-    public AdaptedAddressBook() {}
+    public AdaptedAddressBook() {
+    }
 
     /**
      * Converts a given AddressBook into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created AdaptedAddressBook
+     * @param source
+     *            future changes to this will not affect the created
+     *            AdaptedAddressBook
      */
     public AdaptedAddressBook(AddressBook source) {
         persons = new ArrayList<>();
@@ -45,14 +48,13 @@ public class AdaptedAddressBook {
         }
     }
 
-
     /**
      * Returns true if any required field is missing.
      *
-     * JAXB does not enforce (required = true) without a given XML schema.
-     * Since we do most of our validation using the data class constructors, the only extra logic we need
-     * is to ensure that every xml element in the document is present. JAXB sets missing elements as null,
-     * so we check for that.
+     * JAXB does not enforce (required = true) without a given XML schema. Since
+     * we do most of our validation using the data class constructors, the only
+     * extra logic we need is to ensure that every xml element in the document
+     * is present. JAXB sets missing elements as null, so we check for that.
      */
     public boolean isAnyRequiredFieldMissing() {
         for (AdaptedTag tag : tags) {
@@ -68,10 +70,13 @@ public class AdaptedAddressBook {
         return false;
     }
 
-
     /**
-     * Converts this jaxb-friendly {@code AdaptedAddressBook} object into the corresponding(@code AddressBook} object.
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * Converts this jaxb-friendly {@code AdaptedAddressBook} object into the
+     * corresponding(@code AddressBook} object.
+     * 
+     * @throws IllegalValueException
+     *             if there were any data constraints violated in the adapted
+     *             person
      */
     public AddressBook toModelType() throws IllegalValueException {
         final List<Tag> tagList = new ArrayList<>();

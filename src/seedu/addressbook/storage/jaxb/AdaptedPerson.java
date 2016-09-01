@@ -39,13 +39,15 @@ public class AdaptedPerson {
     /**
      * No-arg constructor for JAXB use.
      */
-    public AdaptedPerson() {}
-
+    public AdaptedPerson() {
+    }
 
     /**
      * Converts a given Person into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created AdaptedPerson
+     * @param source
+     *            future changes to this will not affect the created
+     *            AdaptedPerson
      */
     public AdaptedPerson(ReadOnlyPerson source) {
         name = source.getName().fullName;
@@ -71,10 +73,10 @@ public class AdaptedPerson {
     /**
      * Returns true if any required field is missing.
      *
-     * JAXB does not enforce (required = true) without a given XML schema.
-     * Since we do most of our validation using the data class constructors, the only extra logic we need
-     * is to ensure that every xml element in the document is present. JAXB sets missing elements as null,
-     * so we check for that.
+     * JAXB does not enforce (required = true) without a given XML schema. Since
+     * we do most of our validation using the data class constructors, the only
+     * extra logic we need is to ensure that every xml element in the document
+     * is present. JAXB sets missing elements as null, so we check for that.
      */
     public boolean isAnyRequiredFieldMissing() {
         for (AdaptedTag tag : tagged) {
@@ -83,14 +85,15 @@ public class AdaptedPerson {
             }
         }
         // second call only happens if phone/email/address are all not null
-        return Utils.isAnyNull(name, phone, email, address)
-                || Utils.isAnyNull(phone.value, email.value, address.value);
+        return Utils.isAnyNull(name, phone, email, address) || Utils.isAnyNull(phone.value, email.value, address.value);
     }
 
     /**
      * Converts this jaxb-friendly adapted person object into the Person object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException
+     *             if there were any data constraints violated in the adapted
+     *             person
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();

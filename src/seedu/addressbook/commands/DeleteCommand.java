@@ -4,9 +4,9 @@ import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 
-
 /**
- * Deletes a person identified using it's last displayed index from the address book.
+ * Deletes a person identified using it's last displayed index from the address
+ * book.
  */
 public class DeleteCommand extends Command {
 
@@ -14,16 +14,13 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the last person listing.\n"
-            + "Parameters: INDEX\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX\n" + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-
 
     public DeleteCommand(int targetVisibleIndex) {
         super(targetVisibleIndex);
     }
-
 
     @Override
     public CommandResult execute() {

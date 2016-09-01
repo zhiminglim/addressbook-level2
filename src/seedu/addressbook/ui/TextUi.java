@@ -18,7 +18,10 @@ import java.util.Scanner;
  */
 public class TextUi {
 
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
+    /**
+     * A decorative prefix added to the beginning of lines printed by
+     * AddressBook
+     */
     private static final String LINE_PREFIX = "|| ";
 
     /** A platform independent line separator. */
@@ -29,17 +32,19 @@ public class TextUi {
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
 
-
-    /** Offset required to convert between 1-indexing and 0-indexing.  */
+    /** Offset required to convert between 1-indexing and 0-indexing. */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
 
-    /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
+    /**
+     * Format of a comment input line. Comment lines are silently consumed when
+     * reading user input.
+     */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
 
     private final Scanner in;
     private final PrintStream out;
 
-    public TextUi(){
+    public TextUi() {
         this(System.in, System.out);
     }
 
@@ -49,10 +54,11 @@ public class TextUi {
     }
 
     /**
-     * Returns true if the user input line should be ignored.
-     * Input should be ignored if it is parsed as a comment, is only whitespace, or is empty.
+     * Returns true if the user input line should be ignored. Input should be
+     * ignored if it is parsed as a comment, is only whitespace, or is empty.
      *
-     * @param rawInputLine full raw user input line.
+     * @param rawInputLine
+     *            full raw user input line.
      * @return true if the entire user input line should be ignored.
      */
     private boolean shouldIgnore(String rawInputLine) {
@@ -62,7 +68,8 @@ public class TextUi {
     /**
      * Returns true if the user input line is a comment line.
      *
-     * @param rawInputLine full raw user input line.
+     * @param rawInputLine
+     *            full raw user input line.
      * @return true if input line is a comment.
      */
     private boolean isCommentLine(String rawInputLine) {
@@ -70,9 +77,10 @@ public class TextUi {
     }
 
     /**
-     * Prompts for the command and reads the text entered by the user.
-     * Ignores empty, pure whitespace, and comment lines.
-     * Echos the command back to the user.
+     * Prompts for the command and reads the text entered by the user. Ignores
+     * empty, pure whitespace, and comment lines. Echos the command back to the
+     * user.
+     * 
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
@@ -88,23 +96,15 @@ public class TextUi {
         return fullInputLine;
     }
 
-
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        showToUser(
-                DIVIDER,
-                DIVIDER,
-                MESSAGE_WELCOME,
-                version,
-                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
+        showToUser(DIVIDER, DIVIDER, MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo,
                 DIVIDER);
     }
 
     public void showGoodbyeMessage() {
         showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
     }
-
 
     public void showInitFailedMessage() {
         showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
@@ -118,12 +118,12 @@ public class TextUi {
     }
 
     /**
-     * Shows the result of a command execution to the user. Includes additional formatting to demarcate different
-     * command execution segments.
+     * Shows the result of a command execution to the user. Includes additional
+     * formatting to demarcate different command execution segments.
      */
     public void showResultToUser(CommandResult result) {
         final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
-        if(resultPersons.isPresent()) {
+        if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
         showToUser(result.feedbackToUser, DIVIDER);
@@ -160,7 +160,8 @@ public class TextUi {
     /**
      * Formats a string as a viewable indexed list item.
      *
-     * @param visibleIndex visible index for this listing
+     * @param visibleIndex
+     *            visible index for this listing
      */
     private static String getIndexedListItem(int visibleIndex, String listItem) {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);

@@ -5,8 +5,8 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 import java.util.*;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case sensitive.
+ * Finds and lists all persons in address book whose name contains any of the
+ * argument keywords. Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
 
@@ -14,8 +14,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n" + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final Set<String> keywords;
 
@@ -37,9 +36,11 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Retrieve all persons in the address book whose names contain some of the specified keywords.
+     * Retrieve all persons in the address book whose names contain some of the
+     * specified keywords.
      *
-     * @param keywords for searching
+     * @param keywords
+     *            for searching
      * @return list of persons found
      */
     private List<ReadOnlyPerson> getPersonsWithNameContainingAnyKeyword(Set<String> keywords) {

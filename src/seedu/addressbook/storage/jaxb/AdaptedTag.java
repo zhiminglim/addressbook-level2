@@ -17,12 +17,14 @@ public class AdaptedTag {
     /**
      * No-arg constructor for JAXB use.
      */
-    public AdaptedTag() {}
+    public AdaptedTag() {
+    }
 
     /**
      * Converts a given Tag into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created AdaptedTag
+     * @param source
+     *            future changes to this will not affect the created AdaptedTag
      */
     public AdaptedTag(Tag source) {
         tagName = source.tagName;
@@ -31,10 +33,10 @@ public class AdaptedTag {
     /**
      * Returns true if any required field is missing.
      *
-     * JAXB does not enforce (required = true) without a given XML schema.
-     * Since we do most of our validation using the data class constructors, the only extra logic we need
-     * is to ensure that every xml element in the document is present. JAXB sets missing elements as null,
-     * so we check for that.
+     * JAXB does not enforce (required = true) without a given XML schema. Since
+     * we do most of our validation using the data class constructors, the only
+     * extra logic we need is to ensure that every xml element in the document
+     * is present. JAXB sets missing elements as null, so we check for that.
      */
     public boolean isAnyRequiredFieldMissing() {
         return Utils.isAnyNull(tagName);
@@ -43,7 +45,9 @@ public class AdaptedTag {
     /**
      * Converts this jaxb-friendly adapted tag object into the Tag object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException
+     *             if there were any data constraints violated in the adapted
+     *             person
      */
     public Tag toModelType() throws IllegalValueException {
         return new Tag(tagName);
